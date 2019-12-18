@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Portal TISS
   version: '1.0'
-  description: 'description  pro  '
+  description: ''
 servers:
   - url: 'http://localhost:3000/mvsaudeweb/mvsaudeweb/messagebroker'
 paths:
@@ -1264,7 +1264,12 @@ components:
       title: Proposta
       type: object
       x-examples: {}
-      description: ''
+      description: |-
+        [GET] Propriedade adicional retornada ao consultar uma proposta.
+        [PUT] A propriedade deve ser enviada apenas ao editar proposta.
+        [REFERÊNCIA] O valor referencia um código obtido através de uma consulta a um determinado endpoint.
+      x-tags:
+        - proposta
       properties:
         proposta:
           type: object
@@ -1369,6 +1374,7 @@ components:
           required:
             - grau_seg
             - estado_civil_seg
+            - sexo_seg
             - nome_seg
             - dt_adesao_seg
             - dt_nascimento_seg
@@ -1383,7 +1389,7 @@ components:
           properties:
             categ_seg:
               type: integer
-              description: Código Referenciado /proposta/categorias
+              description: '[REFERÊNCIA] /propostas/beneficiarios/categorias'
             grau_seg:
               type: string
               enum:
@@ -1422,11 +1428,12 @@ components:
               example: 12/12/2019
             dt_nascimento_seg:
               type: string
+              example: 01/01/1990
             ident_seg:
               type: string
             pais_seg:
               type: integer
-              description: Código Referenciado /proposta/paises
+              description: '[REFERÊNCIA] /propostas/paises'
             orgao_seg:
               type: string
             cns_seg:
@@ -1444,7 +1451,7 @@ components:
               type: integer
             agencia_seg:
               type: string
-              description: Código Referenciado /proposta/bancos
+              description: '[REFERÊNCIA] /propostas/bancos'
             numero_agencia_seg:
               type: string
             conta_seg:
@@ -1453,7 +1460,7 @@ components:
               type: string
             uf_seg:
               type: string
-              description: Código Referenciado /proposta/estados
+              description: '[REFERÊNCIA] /proposta/estados'
             cidade_seg:
               type: string
             endereco_seg:
@@ -1470,10 +1477,10 @@ components:
               type: string
             plano_seg:
               type: integer
-              description: Código Referenciado /proposta/planos
+              description: '[REFERÊNCIA] /propostas/planos'
             tabela_seg:
               type: integer
-              description: Código Referenciado /proposta/tabelasPrecos
+              description: '[REFERÊNCIA] /propostas/planos/{cdPlano}/tabelasPrecos'
             cd_mat_alternativa:
               type: string
               description: '[GET][PUT] Código de controle para identificar mudanças ao editar a proposta'
@@ -1481,5 +1488,3 @@ components:
         - proposta
         - contrato
         - clientes
-      x-tags:
-        - proposta
