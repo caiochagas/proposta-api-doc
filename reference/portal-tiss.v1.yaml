@@ -1,0 +1,1479 @@
+openapi: 3.0.0
+info:
+  title: Portal TISS
+  version: '1.0'
+  description: 'description  pro  '
+servers:
+  - url: 'http://localhost:3000/mvsaudeweb/mvsaudeweb/messagebroker'
+paths:
+  /proposta/:
+    post:
+      summary: Salvar Proposta
+      tags:
+        - proposta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: integer
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+                required:
+                  - message
+                  - status
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data: 480
+                    message: 'Proposta 5881625 gerada com sucesso, protocolo: 476'
+                    status: true
+                Exemplo Erro:
+                  value:
+                    message: Campos obrigatórios do novo contrato inválidos.
+                    status: false
+      operationId: put-proposta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/proposta'
+            examples:
+              Exemplo JSON:
+                value:
+                  proposta:
+                    codigo_proposta: '5881625'
+                    dt_proposta: 17/12/2019
+                    detalhes_proposta: Observações relacionadas a proposta
+                    cd_vendedor: 4589
+                    cd_empresa_vendedora: 2
+                    cd_unidade_venda: 99
+                    cd_metodo_venda: 4
+                  contrato:
+                    novo_contrato:
+                      planos_tabelas:
+                        - plano:
+                            cd_plano: 785
+                          tabela:
+                            cd_tabela: 8295
+                        - plano:
+                            cd_plano: 599
+                          tabela:
+                            cd_tabela: 8266
+                      tipo_contrato: I
+                      titular_responsavel_financeiro: S
+                      data_vencimento: '5'
+                    isNovoContrato: true
+                  clientes:
+                    - categ_seg: null
+                      grau_seg: T
+                      estado_civil_seg: S
+                      sexo_seg: M
+                      nome_seg: NOME DO BENEFICIARIO TITULAR
+                      email_seg: null
+                      cpf_seg: 1234567890
+                      pis_seg: null
+                      dt_adesao_seg: 12/12/2019
+                      dt_admissao_seg: null
+                      dt_nascimento_seg: 01/01/1990
+                      ident_seg: null
+                      pais_seg: null
+                      orgao_seg: null
+                      cns_seg: null
+                      parentesco_seg: null
+                      pai_seg: null
+                      mae_seg: NOME DA MAE
+                      conjuge_seg: null
+                      banco_seg: null
+                      agencia_seg: null
+                      numero_agencia_seg: null
+                      conta_seg: null
+                      cep_seg: '50630430'
+                      uf_seg: PE
+                      cidade_seg: RECIFE
+                      endereco_seg: RAMIRO COSTA
+                      bairro_seg: PRADO
+                      zona_seg: 9
+                      numero_seg: '123'
+                      telefone_seg: null
+                      complemento_seg: null
+                      detalhes_seg: null
+                      ddd_telefone_seg: null
+                      tp_endereco_seg: AEROPORTO
+                      plano_seg: 785
+                      tabela_seg: 8295
+                    - categ_seg: null
+                      grau_seg: D
+                      estado_civil_seg: S
+                      sexo_seg: M
+                      nome_seg: NOME DO BENEFICIARIO DEPENDENTE
+                      email_seg: null
+                      cpf_seg: 1234567890
+                      pis_seg: null
+                      dt_adesao_seg: 12/12/2019
+                      dt_admissao_seg: null
+                      dt_nascimento_seg: 01/01/1990
+                      ident_seg: null
+                      pais_seg: null
+                      orgao_seg: null
+                      cns_seg: null
+                      parentesco_seg: 3
+                      pai_seg: null
+                      mae_seg: NOME DA MAE
+                      conjuge_seg: null
+                      banco_seg: null
+                      agencia_seg: null
+                      numero_agencia_seg: null
+                      conta_seg: null
+                      cep_seg: '50630430'
+                      uf_seg: PE
+                      cidade_seg: RECIFE
+                      endereco_seg: RAMIRO COSTA
+                      bairro_seg: PRADO
+                      numero_seg: '123'
+                      telefone_seg: null
+                      complemento_seg: null
+                      detalhes_seg: null
+                      ddd_telefone_seg: null
+                      tp_endereco_seg: AEROPORTO
+                      plano_seg: 785
+                      tabela_seg: 8295
+        description: ''
+    parameters: []
+  '/proposta/{cdProposta}':
+    parameters:
+      - type: string
+        name: cdProposta
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Consultar uma Proposta
+      tags:
+        - proposta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/proposta'
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      proposta:
+                        dt_criacao: 17/12/2019
+                        detalhes_proposta: Observações relacionadas a proposta
+                        cd_empresa_vendedora: 2
+                        tp_status: P
+                        dt_proposta: 17/12/2019
+                        cd_metodo_venda: 4
+                        codigo_proposta: '5881625'
+                        proposta_seq: 480
+                        cd_unidade_venda: 99
+                        cd_vendedor: 4589
+                      contrato:
+                        novo_contrato:
+                          servicos: []
+                          responsavel_financeiro_campos: {}
+                          planos_tabelas:
+                            - tabela:
+                                cd_tabela: 8295
+                                ds_tabela: ABFNV ESPECIAL
+                              plano:
+                                cd_plano: 785
+                                cd_registro_ms: 15218358
+                                ds_plano: ABFNV ESPECIAL
+                                vl_teto_guia: 0
+                              seq_plano_tabela: 513
+                            - tabela:
+                                cd_tabela: 8266
+                                ds_tabela: REPASSE PRE CONTRATO 104845
+                              plano:
+                                cd_plano: 599
+                                cd_registro_ms: 420455997
+                                ds_plano: 'AMBAPTOBS                               '
+                                vl_teto_guia: 50
+                              seq_plano_tabela: 514
+                          tipo_contrato: I
+                          titular_responsavel_financeiro: S
+                          data_vencimento: 5
+                        isNovoContrato: true
+                      clientes:
+                        - endereco_seg: RAMIRO COSTA
+                          cd_mat_alternativa: 6600000004806584000
+                          bairro_seg: PRADO
+                          dt_adesao_seg: 12/12/2019
+                          sexo_seg: M
+                          plano_seg: 785
+                          uf_seg: PE
+                          cep_seg: '50630430'
+                          cpf_seg: 1234567890
+                          dt_nascimento_seg: 01/01/1990
+                          zona_seg: 9
+                          arquivos: []
+                          mae_seg: NOME DA MAE
+                          numero_seg: '123'
+                          cidade_seg: RECIFE
+                          tp_endereco_seg: AEROPORTO
+                          tabela_seg: 8295
+                          grau_seg: T
+                          proposta_usuario_seq: 658
+                          estado_civil_seg: S
+                          nome_seg: NOME DO BENEFICIARIO TITULAR
+                        - endereco_seg: RAMIRO COSTA
+                          cd_mat_alternativa: 6600000004806595000
+                          bairro_seg: PRADO
+                          dt_adesao_seg: 12/12/2019
+                          parentesco_seg: 3
+                          sexo_seg: M
+                          plano_seg: 785
+                          uf_seg: PE
+                          cep_seg: '50630430'
+                          cpf_seg: 1234567890
+                          dt_nascimento_seg: 01/01/1990
+                          arquivos: []
+                          mae_seg: NOME DA MAE
+                          numero_seg: '123'
+                          cidade_seg: RECIFE
+                          tp_endereco_seg: AEROPORTO
+                          tabela_seg: 8295
+                          grau_seg: D
+                          proposta_usuario_seq: 659
+                          estado_civil_seg: S
+                          nome_seg: NOME DO BENEFICIARIO DEPENDENTER
+                    message: Sucesso.
+                    status: true
+                Exemplo Erro:
+                  value:
+                    message: Proposta não encontrada.
+                    status: false
+      operationId: 'get-proposta-{cdProposta}'
+      description: |
+        ...
+    put:
+      summary: Editar Proposta
+      tags:
+        - proposta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: integer
+                    description: Código da proposta gerado pelo sistema
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data: 453
+                    message: Proposta editada com sucesso.
+                    status: true
+      operationId: 'post-proposta-{cdProposta}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              Exemplo JSON:
+                value:
+                  proposta:
+                    dt_criacao: 17/12/2019
+                    detalhes_proposta: Observações relacionadas a proposta
+                    cd_empresa_vendedora: 2
+                    tp_status: P
+                    dt_proposta: 17/12/2019
+                    cd_metodo_venda: 4
+                    codigo_proposta: '5881625'
+                    proposta_seq: 480
+                    cd_unidade_venda: 99
+                    cd_vendedor: 4589
+                  contrato:
+                    novo_contrato:
+                      servicos: []
+                      responsavel_financeiro_campos: {}
+                      planos_tabelas:
+                        - tabela:
+                            cd_tabela: 8295
+                            ds_tabela: ABFNV ESPECIAL
+                          plano:
+                            cd_plano: 785
+                            ds_plano: ABFNV ESPECIAL
+                          seq_plano_tabela: 513
+                        - tabela:
+                            cd_tabela: 8266
+                            ds_tabela: REPASSE PRE CONTRATO 104845
+                          plano:
+                            cd_plano: 599
+                            ds_plano: AMBAPTOBS
+                          seq_plano_tabela: 514
+                      tipo_contrato: I
+                      titular_responsavel_financeiro: S
+                      data_vencimento: 5
+                    isNovoContrato: true
+                  clientes:
+                    - endereco_seg: RAMIRO COSTA
+                      cd_mat_alternativa: 06600000004806664589
+                      bairro_seg: PRADO
+                      dt_adesao_seg: 12/12/2019
+                      sexo_seg: M
+                      plano_seg: 785
+                      uf_seg: PE
+                      cep_seg: '50630430'
+                      cpf_seg: 01234567890
+                      dt_nascimento_seg: 01/01/1990
+                      zona_seg: 9
+                      mae_seg: NOME DA MAE
+                      numero_seg: '123'
+                      cidade_seg: RECIFE
+                      tp_endereco_seg: AEROPORTO
+                      tabela_seg: 8295
+                      grau_seg: T
+                      proposta_usuario_seq: 666
+                      estado_civil_seg: S
+                      nome_seg: NOME DO BENEFICIARIO TITULAR
+                    - endereco_seg: RAMIRO COSTA
+                      cd_mat_alternativa: 06600000004806674589
+                      bairro_seg: PRADO
+                      dt_adesao_seg: 12/12/2019
+                      parentesco_seg: 3
+                      ds_tmp_operadora_anterior: ASD
+                      sexo_seg: M
+                      plano_seg: 785
+                      uf_seg: PE
+                      pai_seg: TESTE TESTE
+                      cep_seg: '50630430'
+                      cpf_seg: 01234567890
+                      nm_operadora_anterior: ASD
+                      dt_nascimento_seg: 01/01/1990
+                      sn_aproveitamento_carenc: S
+                      mae_seg: NOME DA MAE
+                      numero_seg: '123'
+                      cidade_seg: RECIFE
+                      tp_endereco_seg: AEROPORTO
+                      tabela_seg: 8295
+                      grau_seg: D
+                      proposta_usuario_seq: 667
+                      estado_civil_seg: S
+                      nome_seg: NOME DO BENEFICIARIO DEPENDENTER
+        description: ''
+  /proposta/planos:
+    get:
+      summary: Listar Planos
+      tags:
+        - proposta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cd_plano:
+                          type: integer
+                        ds_plano:
+                          type: string
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      - cd_plano: '1'
+                        ds_plano: PLANAF
+                      - cd_plano: '2'
+                        ds_plano: ASSISTENCIAL
+                      - cd_plano: '3'
+                        ds_plano: DIPLOMATA EMPRESARIAL
+                      - cd_plano: '4'
+                        ds_plano: DIPLOMATA EMPRESARIAL POR ADESÃO
+                      - cd_plano: '6'
+                        ds_plano: LONG LIFE ESPECIAL
+                      - cd_plano: '7'
+                        ds_plano: LONG LIFE PLUS ESPECIAL
+                      - cd_plano: '21'
+                        ds_plano: LONG LIFE ESPECIAL
+                      - cd_plano: '24'
+                        ds_plano: DIPLOMATA ESPECIAL OBSTETRÍCIA
+                      - cd_plano: '26'
+                        ds_plano: DIPLOMATA EMPRESARIAL OBSTETRÍCIA
+                      - cd_plano: '48'
+                        ds_plano: AMIGO ESPECIAL
+                      - cd_plano: '51'
+                        ds_plano: AMBULATORIAL
+                    message: Sucesso.
+                    status: true
+      operationId: get-proposta-planos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: cdMultiEmpresa
+          description: Código da multi empresa
+          required: true
+  /proposta/tabelasPrecos:
+    get:
+      summary: Listar Tabelas de Preços
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cd_tabela:
+                          type: integer
+                        ds_tabela:
+                          type: string
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      - cd_tabela: '3334'
+                        ds_tabela: 47 - VALDASELI GIACOMIN
+                      - cd_tabela: '8237'
+                        ds_tabela: TESTE RAPHA
+                      - cd_tabela: '8242'
+                        ds_tabela: TESTE BADEN
+                      - cd_tabela: '8243'
+                        ds_tabela: TESTE BADEN 40
+                      - cd_tabela: '8279'
+                        ds_tabela: TABELA ADAPTACAO MANU
+                    message: Sucesso.
+                    status: true
+      operationId: get-proposta-tabelasPrecos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: cdPlano
+          description: Código do plano
+          required: true
+      tags:
+        - proposta
+  /proposta/paises/:
+    get:
+      summary: Listar Países
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cd_pais:
+                          type: integer
+                        nm_pais:
+                          type: string
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      - cd_pais: 32
+                        nm_pais: BRASIL
+                      - cd_pais: 1
+                        nm_pais: ACORES
+                      - cd_pais: 2
+                        nm_pais: AFEGANISTAO
+                      - cd_pais: 3
+                        nm_pais: AFRICA DO SUL
+                      - cd_pais: 4
+                        nm_pais: ALASCA (EUA)
+                      - cd_pais: 5
+                        nm_pais: ALBANIA
+                      - cd_pais: 6
+                        nm_pais: ALEMANHA
+                      - cd_pais: 7
+                        nm_pais: ANDORRA
+                      - cd_pais: 8
+                        nm_pais: ANGOLA
+                      - cd_pais: 9
+                        nm_pais: ANTARTICA
+                      - cd_pais: 10
+                        nm_pais: ANTIGUA
+                      - cd_pais: 11
+                        nm_pais: ANTILHAS HOLANDESAS
+                      - cd_pais: 12
+                        nm_pais: ARABIA SAUDITA
+                      - cd_pais: 13
+                        nm_pais: ARGELIA
+                      - cd_pais: 14
+                        nm_pais: ARGENTINA
+                      - cd_pais: 15
+                        nm_pais: ARMENIA
+                      - cd_pais: 16
+                        nm_pais: AUSTRALIA
+                      - cd_pais: 17
+                        nm_pais: AUSTRIA
+                      - cd_pais: 18
+                        nm_pais: AZERBAIJAO
+                      - cd_pais: 19
+                        nm_pais: BAHAMAS
+                      - cd_pais: 20
+                        nm_pais: BAHREIN (BAREINE)
+                      - cd_pais: 21
+                        nm_pais: BANGLADESH
+                      - cd_pais: 23
+                        nm_pais: BASHKORTOSTAN
+                      - cd_pais: 24
+                        nm_pais: BELARUS
+                      - cd_pais: 25
+                        nm_pais: BELGICA
+                      - cd_pais: 26
+                        nm_pais: BELIZE
+                      - cd_pais: 27
+                        nm_pais: BENIN
+                      - cd_pais: 28
+                        nm_pais: BERMUDAS
+                      - cd_pais: 29
+                        nm_pais: BOLIVIA
+                      - cd_pais: 30
+                        nm_pais: BOSNIA-HERZEGOVINA
+                      - cd_pais: 31
+                        nm_pais: BOTSWANA
+                      - cd_pais: 33
+                        nm_pais: BRUNEI
+                      - cd_pais: 34
+                        nm_pais: BULGARIA
+                      - cd_pais: 35
+                        nm_pais: BURKINA FASSO
+                      - cd_pais: 36
+                        nm_pais: BURUNDI
+                      - cd_pais: 37
+                        nm_pais: BUTAO
+                      - cd_pais: 38
+                        nm_pais: CABO VERDE (REPUBLICA DO)
+                      - cd_pais: 39
+                        nm_pais: CAMAROES
+                      - cd_pais: 40
+                        nm_pais: CAMBOJA
+                      - cd_pais: 41
+                        nm_pais: CANADA
+                      - cd_pais: 42
+                        nm_pais: CATAR
+                      - cd_pais: 43
+                        nm_pais: CAZAQUISTAO
+                      - cd_pais: 44
+                        nm_pais: CHADE
+                      - cd_pais: 45
+                        nm_pais: CHILE
+                      - cd_pais: 46
+                        nm_pais: CHINA
+                      - cd_pais: 47
+                        nm_pais: CHIPRE (REPUBLICA DE)
+                      - cd_pais: 48
+                        nm_pais: CHUVASH (REPUBLICA DE)
+                      - cd_pais: 49
+                        nm_pais: CINGAPURA
+                      - cd_pais: 50
+                        nm_pais: COLOMBIA
+                      - cd_pais: 51
+                        nm_pais: COMOROS (REPUBLICA FEDERAL ISLAMICA DE)
+                      - cd_pais: 52
+                        nm_pais: CONGO (ZAIRE)
+                      - cd_pais: 53
+                        nm_pais: COREIA DO NORTE
+                      - cd_pais: 54
+                        nm_pais: COREIA DO SUL
+                      - cd_pais: 55
+                        nm_pais: COSTA DO MARFIM
+                      - cd_pais: 56
+                        nm_pais: COSTA RICA
+                      - cd_pais: 57
+                        nm_pais: CROACIA
+                      - cd_pais: 58
+                        nm_pais: CUBA
+                      - cd_pais: 59
+                        nm_pais: DINAMARCA
+                      - cd_pais: 60
+                        nm_pais: DJIBOUTI
+                      - cd_pais: 61
+                        nm_pais: DOMINICA
+                      - cd_pais: 62
+                        nm_pais: EGITO
+                      - cd_pais: 63
+                        nm_pais: EL SALVADOR
+                      - cd_pais: 64
+                        nm_pais: EMIRADOS ARABES UNIDOS
+                      - cd_pais: 65
+                        nm_pais: EQUADOR
+                      - cd_pais: 66
+                        nm_pais: ERITEIA (ERITREIA)
+                      - cd_pais: 67
+                        nm_pais: ESCOCIA (GBR)
+                      - cd_pais: 68
+                        nm_pais: ESLOVAQUIA
+                      - cd_pais: 69
+                        nm_pais: ESLOVENIA
+                      - cd_pais: 70
+                        nm_pais: ESPANHA
+                      - cd_pais: 71
+                        nm_pais: ESTADOS UNIDOS DA AMERICA
+                      - cd_pais: 72
+                        nm_pais: ESTONIA
+                      - cd_pais: 73
+                        nm_pais: ETIOPIA
+                      - cd_pais: 74
+                        nm_pais: FIJI (ILHAS)
+                      - cd_pais: 75
+                        nm_pais: FILIPINAS
+                      - cd_pais: 76
+                        nm_pais: FINLANDIA
+                      - cd_pais: 77
+                        nm_pais: FORMOSA TAIWAN (CHINA)
+                      - cd_pais: 78
+                        nm_pais: FRANCA
+                      - cd_pais: 79
+                        nm_pais: GABAO
+                      - cd_pais: 80
+                        nm_pais: GAMBIA
+                      - cd_pais: 81
+                        nm_pais: GANA
+                      - cd_pais: 82
+                        nm_pais: GEORGIA (REPUBLICA DE)
+                      - cd_pais: 83
+                        nm_pais: GIBRALTAR (GBR)
+                      - cd_pais: 84
+                        nm_pais: GRA-BRETANHA
+                      - cd_pais: 85
+                        nm_pais: GRANADA
+                      - cd_pais: 86
+                        nm_pais: GRECIA
+                      - cd_pais: 87
+                        nm_pais: GROENLANDIA (DINAMARCA)
+                      - cd_pais: 88
+                        nm_pais: GUADALUPE (FRANCA)
+                      - cd_pais: 89
+                        nm_pais: GUAM (EUA)
+                      - cd_pais: 90
+                        nm_pais: GUATEMALA
+                      - cd_pais: 91
+                        nm_pais: GUERNSEY (GRB)
+                      - cd_pais: 92
+                        nm_pais: GUIANA
+                      - cd_pais: 93
+                        nm_pais: GUIANA FRANCESA
+                      - cd_pais: 94
+                        nm_pais: GUINE
+                      - cd_pais: 95
+                        nm_pais: GUINE EQUATORIAL
+                      - cd_pais: 96
+                        nm_pais: GUINE-BISSAU
+                      - cd_pais: 97
+                        nm_pais: GUINE-CONACRI
+                      - cd_pais: 98
+                        nm_pais: HAITI
+                      - cd_pais: 99
+                        nm_pais: HONDURAS
+                      - cd_pais: 100
+                        nm_pais: HONG KONG
+                      - cd_pais: 101
+                        nm_pais: HUNGRIA
+                      - cd_pais: 102
+                        nm_pais: IEMEN (REPUBLICA DO)
+                      - cd_pais: 103
+                        nm_pais: ILHA NORFOLK
+                      - cd_pais: 104
+                        nm_pais: ILHAS CAIMA
+                      - cd_pais: 105
+                        nm_pais: ILHAS CANARIAS
+                      - cd_pais: 106
+                        nm_pais: ILHAS COCOS (KEELING)
+                      - cd_pais: 107
+                        nm_pais: ILHAS COOK
+                      - cd_pais: 108
+                        nm_pais: ILHAS MARSHALL
+                      - cd_pais: 109
+                        nm_pais: INDIA
+                      - cd_pais: 110
+                        nm_pais: INDONESIA
+                      - cd_pais: 111
+                        nm_pais: IRA
+                      - cd_pais: 112
+                        nm_pais: IRAQUE
+                      - cd_pais: 113
+                        nm_pais: IRLANDA
+                      - cd_pais: 114
+                        nm_pais: ISLANDIA
+                      - cd_pais: 115
+                        nm_pais: ISRAEL
+                      - cd_pais: 116
+                        nm_pais: ITALIA
+                      - cd_pais: 117
+                        nm_pais: IUGOSLAVIA
+                      - cd_pais: 118
+                        nm_pais: JAMAICA
+                      - cd_pais: 119
+                        nm_pais: JAPAO
+                      - cd_pais: 120
+                        nm_pais: JORDANIA
+                      - cd_pais: 121
+                        nm_pais: KUWAIT
+                      - cd_pais: 122
+                        nm_pais: LAOS
+                      - cd_pais: 123
+                        nm_pais: LESOTO
+                      - cd_pais: 124
+                        nm_pais: LETONIA (REPUBLICA DA)
+                      - cd_pais: 125
+                        nm_pais: LIBANO
+                      - cd_pais: 126
+                        nm_pais: LIBERIA
+                      - cd_pais: 127
+                        nm_pais: LIBIA
+                      - cd_pais: 128
+                        nm_pais: LIECHTENSTEIN
+                      - cd_pais: 129
+                        nm_pais: LITUANIA
+                      - cd_pais: 130
+                        nm_pais: LUXEMBURGO
+                      - cd_pais: 131
+                        nm_pais: MACAU
+                      - cd_pais: 132
+                        nm_pais: MACEDONIA
+                      - cd_pais: 133
+                        nm_pais: MADAGASCAR
+                      - cd_pais: 134
+                        nm_pais: MALASIA
+                      - cd_pais: 135
+                        nm_pais: MALDIVAS (ILHAS)
+                      - cd_pais: 136
+                        nm_pais: MALI
+                      - cd_pais: 137
+                        nm_pais: MALTA
+                      - cd_pais: 138
+                        nm_pais: MARROCOS
+                      - cd_pais: 139
+                        nm_pais: MARTINICA (FRANCA)
+                      - cd_pais: 140
+                        nm_pais: MAURITANIA
+                      - cd_pais: 141
+                        nm_pais: MAURITIUS (MAURICIO)
+                      - cd_pais: 142
+                        nm_pais: MAYOTTE (FRANCA)
+                      - cd_pais: 143
+                        nm_pais: MEXICO
+                      - cd_pais: 144
+                        nm_pais: MICRONESIA
+                      - cd_pais: 145
+                        nm_pais: MOCAMBIQUE
+                      - cd_pais: 146
+                        nm_pais: MOLDAVIA (REPUBLICA DE)
+                      - cd_pais: 147
+                        nm_pais: MONACO (PRINCIPADO DE)
+                      - cd_pais: 148
+                        nm_pais: MONGOLIA
+                      - cd_pais: 149
+                        nm_pais: MONTSERRAT (GBR)
+                      - cd_pais: 150
+                        nm_pais: NAMIBIA
+                      - cd_pais: 151
+                        nm_pais: NAURU
+                      - cd_pais: 152
+                        nm_pais: NEPAL
+                      - cd_pais: 153
+                        nm_pais: NEVIS
+                      - cd_pais: 154
+                        nm_pais: NICARAGUA
+                      - cd_pais: 155
+                        nm_pais: NIGER
+                      - cd_pais: 156
+                        nm_pais: NIGERIA
+                      - cd_pais: 157
+                        nm_pais: NORUEGA
+                      - cd_pais: 158
+                        nm_pais: NOVA CALEDONIA
+                      - cd_pais: 159
+                        nm_pais: NOVA ZELANDIA
+                      - cd_pais: 160
+                        nm_pais: OMA (MUSCAT)
+                      - cd_pais: 161
+                        nm_pais: PAISES BAIXOS (HOLANDA)
+                      - cd_pais: 162
+                        nm_pais: PALAU (REPUBLICA DE)
+                      - cd_pais: 163
+                        nm_pais: PANAMA
+                      - cd_pais: 164
+                        nm_pais: PAPUA NOVA GUINE
+                      - cd_pais: 165
+                        nm_pais: PAQUISTAO
+                      - cd_pais: 166
+                        nm_pais: PARAGUAI
+                      - cd_pais: 167
+                        nm_pais: PERU
+                      - cd_pais: 168
+                        nm_pais: POLINESIA FRANCESA
+                      - cd_pais: 169
+                        nm_pais: POLONIA
+                      - cd_pais: 170
+                        nm_pais: PORTO RICO (EUA)
+                      - cd_pais: 171
+                        nm_pais: PORTUGAL
+                      - cd_pais: 172
+                        nm_pais: QATAR (DOHA)
+                      - cd_pais: 173
+                        nm_pais: QUENIA
+                      - cd_pais: 174
+                        nm_pais: REPUBLICA CENTRO AFRICANA
+                      - cd_pais: 175
+                        nm_pais: REPUBLICA DOMINICANA
+                      - cd_pais: 176
+                        nm_pais: REPUBLICA TCHECA
+                      - cd_pais: 177
+                        nm_pais: ROMENIA
+                      - cd_pais: 178
+                        nm_pais: RUANDA
+                      - cd_pais: 179
+                        nm_pais: RUSSIA
+                      - cd_pais: 180
+                        nm_pais: SAARA OCIDENTAL
+                      - cd_pais: 181
+                        nm_pais: SAMOA AMERICANA (EUA.)
+                      - cd_pais: 182
+                        nm_pais: SAMOA OCIDENTAL
+                      - cd_pais: 183
+                        nm_pais: SAN MARINO
+                      - cd_pais: 184
+                        nm_pais: SANTA LUCIA
+                      - cd_pais: 185
+                        nm_pais: SANTA SE (CIDADE DO VATICANO)
+                      - cd_pais: 186
+                        nm_pais: SAO PEDRO E MIQUELON (FRANCA)
+                      - cd_pais: 187
+                        nm_pais: SAO TOME E PRINCIPE
+                      - cd_pais: 188
+                        nm_pais: SAO VICENTE E GRANADINAS
+                      - cd_pais: 189
+                        nm_pais: SENEGAL
+                      - cd_pais: 190
+                        nm_pais: SERRA LEOA
+                      - cd_pais: 191
+                        nm_pais: SERVIA
+                      - cd_pais: 192
+                        nm_pais: SIRIA
+                      - cd_pais: 193
+                        nm_pais: SOMALIA
+                      - cd_pais: 194
+                        nm_pais: SRI LANKA (CEILAO)
+                      - cd_pais: 195
+                        nm_pais: SAO KITTS (E NEVIS) INDEPENDENTE
+                      - cd_pais: 196
+                        nm_pais: SANTA HELENA (GBR)
+                      - cd_pais: 197
+                        nm_pais: SUAZILANDIA
+                      - cd_pais: 198
+                        nm_pais: SUDAO
+                      - cd_pais: 199
+                        nm_pais: SUECIA
+                      - cd_pais: 200
+                        nm_pais: SUICA
+                      - cd_pais: 201
+                        nm_pais: SURINAME
+                      - cd_pais: 202
+                        nm_pais: TADJIQUISTAO (REPUBLICA)
+                      - cd_pais: 203
+                        nm_pais: TAILANDIA
+                      - cd_pais: 204
+                        nm_pais: TAITI (POLINESIA FRANCESA)
+                      - cd_pais: 205
+                        nm_pais: TANZANIA
+                      - cd_pais: 206
+                        nm_pais: TOGO
+                      - cd_pais: 207
+                        nm_pais: TOKELAU (ILHAS)
+                      - cd_pais: 208
+                        nm_pais: TONGA
+                      - cd_pais: 209
+                        nm_pais: TRINIDAD E TOBAGO
+                      - cd_pais: 210
+                        nm_pais: TUNISIA
+                      - cd_pais: 211
+                        nm_pais: TURCOMENISTAO (TURCOMENIA)
+                      - cd_pais: 212
+                        nm_pais: TURQUIA
+                      - cd_pais: 213
+                        nm_pais: TUVALU
+                      - cd_pais: 214
+                        nm_pais: UCRANIA
+                      - cd_pais: 215
+                        nm_pais: UGANDA
+                      - cd_pais: 216
+                        nm_pais: URUGUAI
+                      - cd_pais: 217
+                        nm_pais: UZBEQUISTAO
+                      - cd_pais: 218
+                        nm_pais: VANUATU
+                      - cd_pais: 219
+                        nm_pais: VENEZUELA
+                      - cd_pais: 220
+                        nm_pais: VIETNA
+                      - cd_pais: 221
+                        nm_pais: ZAIRE
+                      - cd_pais: 222
+                        nm_pais: ZAMBIA
+                      - cd_pais: 223
+                        nm_pais: ZANZIBAR E PEMBA (TANGANICA)
+                      - cd_pais: 224
+                        nm_pais: ZIMBABUE (ZIMBABWE)
+                      - cd_pais: 22
+                        nm_pais: ARGENTINA
+                      - cd_pais: 999
+                        nm_pais: SÍRIA
+                    message: Sucesso.
+                    status: true
+      operationId: get-paises-
+      tags:
+        - proposta
+        - endereço
+    parameters: []
+  /proposta/categorias:
+    get:
+      summary: Listar Categorias
+      tags:
+        - proposta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cd_categoria:
+                          type: integer
+                        ds_categoria:
+                          type: string
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      - ds_categoria: PORTADOR DE NECESSIDADES ESPECIAIS
+                        cd_categoria: 1
+                      - ds_categoria: UNIVERSITÁRIO
+                        cd_categoria: 2
+                    message: Sucesso.
+                    status: true
+      operationId: get-proposta-categorias
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: cdMultiEmpresa
+          description: Código da multi empresa
+          required: true
+    parameters: []
+  /proposta/estados:
+    get:
+      summary: Listar Estados
+      tags:
+        - proposta
+        - endereço
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cd_uf:
+                          type: string
+                          example: PE
+                        nm_uf:
+                          type: string
+                          example: PERNAMBUCO
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      - nm_uf: ACRE
+                        cd_uf: AC
+                      - nm_uf: ALAGOAS
+                        cd_uf: AL
+                      - nm_uf: AMAZONAS
+                        cd_uf: AM
+                      - nm_uf: AMAPA
+                        cd_uf: AP
+                      - nm_uf: BAHIA
+                        cd_uf: BA
+                      - nm_uf: CEARA
+                        cd_uf: CE
+                      - nm_uf: DISTRITO FEDERAL
+                        cd_uf: DF
+                      - nm_uf: ESPIRITO SANTO
+                        cd_uf: ES
+                      - nm_uf: GOIAS
+                        cd_uf: GO
+                      - nm_uf: MARANHAO
+                        cd_uf: MA
+                      - nm_uf: MINAS GERAIS
+                        cd_uf: MG
+                      - nm_uf: MATO GROSSO SUL
+                        cd_uf: MS
+                      - nm_uf: MATO GROSSO
+                        cd_uf: MT
+                      - nm_uf: PARA
+                        cd_uf: PA
+                      - nm_uf: PARAIBA
+                        cd_uf: PB
+                      - nm_uf: 'PERNAMBUCO '
+                        cd_uf: PE
+                      - nm_uf: PIAUI
+                        cd_uf: PI
+                      - nm_uf: PARANA
+                        cd_uf: PR
+                      - nm_uf: RIO DE JANEIRO
+                        cd_uf: RJ
+                      - nm_uf: RIO GRANDE DO NORTE
+                        cd_uf: RN
+                      - nm_uf: RONDONIA
+                        cd_uf: RO
+                      - nm_uf: RORAIMA
+                        cd_uf: RR
+                      - nm_uf: RIO GRANDE DO SUL
+                        cd_uf: RS
+                      - nm_uf: SANTA CATARINA
+                        cd_uf: SC
+                      - nm_uf: SERGIPE
+                        cd_uf: SE
+                      - nm_uf: 'SAO PAULO '
+                        cd_uf: SP
+                      - nm_uf: TOCANTINS
+                        cd_uf: TO
+                    message: Sucesso.
+                    status: true
+      operationId: get-proposta-estados
+  /proposta/parentescos:
+    get:
+      summary: Listar Parentescos
+      tags:
+        - proposta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cd_parentesco:
+                          type: number
+                        ds_parentesco:
+                          type: string
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      - cd_parentesco: 3
+                        ds_parentesco: COMPANHEIRO(A)
+                      - cd_parentesco: 13
+                        ds_parentesco: CUNHADO/CUNHADA
+                      - cd_parentesco: 5
+                        ds_parentesco: ENTEADO(A)
+                      - cd_parentesco: 1
+                        ds_parentesco: ESPOSO(A)
+                    message: Sucesso.
+                    status: true
+      operationId: get-proposta-parentescos
+  /proposta/bancos:
+    get:
+      summary: Listar Bancos
+      tags:
+        - proposta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cd_banco:
+                          type: integer
+                        nm_banco:
+                          type:
+                            - integer
+                            - string
+                  message:
+                    type: string
+                  status:
+                    type: boolean
+                required:
+                  - message
+                  - status
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      - nm_banco: BANCO DO BRASIL S/A
+                        cd_banco: 1
+                      - nm_banco: BANCO BANESTES S/A
+                        cd_banco: 21
+                      - nm_banco: BANK OF CHINA
+                        cd_banco: 22
+                      - nm_banco: BANCO BANERJ S.A.
+                        cd_banco: 29
+                      - nm_banco: SANTANDER
+                        cd_banco: 33
+                      - nm_banco: BANRISUL
+                        cd_banco: 41
+                    message: Sucesso.
+                    status: true
+      operationId: get-proposta-bancos
+  '/proposta/cep/{cep}':
+    get:
+      summary: Consultar CEP
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      ds_bairro:
+                        type: string
+                      nm_localidade:
+                        type: string
+                      ds_logradouro:
+                        type: string
+                      nr_cep:
+                        type: string
+                      cd_uf:
+                        type: string
+                      tp_logradouro:
+                        type: string
+                  message:
+                    type: string
+                  status:
+                    type:
+                      - string
+                      - boolean
+              examples:
+                Exemplo Sucesso:
+                  value:
+                    data:
+                      ds_bairro: PRADO
+                      nm_localidade: RECIFE
+                      ds_logradouro: RAMIRO COSTA
+                      nr_cep: '50630430'
+                      cd_uf: PE
+                      tp_logradouro: AEROPORTO
+                    message: Sucesso.
+                    status: true
+                Exemplo Erro:
+                  value:
+                    message: CEP não encontrado.
+                    status: false
+      operationId: get-proposta-cep
+    parameters:
+      - schema:
+          type: integer
+        name: cep
+        in: path
+        required: true
+        description: CEP sem máscara
+components:
+  schemas:
+    proposta:
+      title: proposta PUT
+      type: object
+      x-examples: {}
+      description: ''
+      properties:
+        proposta:
+          type: object
+          required:
+            - codigo_proposta
+            - dt_proposta
+            - cd_vendedor
+            - cd_empresa_vendedora
+            - cd_unidade_venda
+            - cd_metodo_venda
+          properties:
+            codigo_proposta:
+              type: string
+              description: Código interno cujo formato é definido pelo cliente
+            dt_proposta:
+              type: string
+            detalhes_proposta:
+              type: string
+            cd_vendedor:
+              type: integer
+            cd_empresa_vendedora:
+              type: integer
+            cd_unidade_venda:
+              type: integer
+            cd_metodo_venda:
+              type: integer
+            dt_criacao:
+              type: string
+              description: '[GET] Data da criação da proposta'
+            tp_status:
+              type: string
+              enum:
+                - P
+                - A
+                - C
+                - R
+              description: '[GET] P = Pendente, A = Aprovada, C = Correção,    R = REPROVADA'
+            proposta_seq:
+              type: integer
+              description: '[GET] Código da proposta gerado pelo sistema'
+        contrato:
+          type: object
+          required:
+            - novo_contrato
+            - tipo_contrato
+            - titular_responsavel_financeiro
+          properties:
+            isNovoContrato:
+              type: boolean
+            novo_contrato:
+              type: object
+              required:
+                - planos_tabelas
+              properties:
+                planos_tabelas:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      plano:
+                        type: object
+                        required:
+                          - cd_plano
+                        properties:
+                          cd_plano:
+                            type: integer
+                          ds_plano:
+                            type: string
+                            description: '[GET]'
+                      tabela:
+                        type: object
+                        required:
+                          - cd_tabela
+                        properties:
+                          cd_tabela:
+                            type: integer
+                          ds_tabela:
+                            type: string
+                            description: '[GET]'
+                      seq_plano_tabela:
+                        type: integer
+                        description: '[GET][PUT] Código de controle para identificar mudanças ao editar a proposta'
+                    required:
+                      - plano
+                      - tabela
+            tipo_contrato:
+              type: string
+              enum:
+                - I
+                - E
+                - A
+            titular_responsavel_financeiro:
+              type: string
+              enum:
+                - S
+                - 'N'
+            data_vencimento:
+              type: integer
+        clientes:
+          type: object
+          required:
+            - grau_seg
+            - estado_civil_seg
+            - nome_seg
+            - dt_adesao_seg
+            - dt_nascimento_seg
+            - mae_seg
+            - cep_seg
+            - uf_seg
+            - cidade_seg
+            - endereco_seg
+            - numero_seg
+            - plano_seg
+            - tabela_seg
+          properties:
+            categ_seg:
+              type: integer
+              description: Código Referenciado /proposta/categorias
+            grau_seg:
+              type: string
+              enum:
+                - T
+                - D
+                - A
+              description: 'T = Titular, D = Dependente, A = Agregado.'
+            estado_civil_seg:
+              type: string
+              description: 'S = Solteiro, C = Casado, V = Viúvo,  D = Divorciado,  I = Desquitado .'
+              enum:
+                - S
+                - C
+                - V
+                - D
+                - I
+              example: S
+            sexo_seg:
+              type: string
+              enum:
+                - M
+                - F
+                - I
+              description: 'M = Masculino, F = Femenino, I = Indefinido'
+            nome_seg:
+              type: string
+            email_seg:
+              type: string
+            cpf_seg:
+              type: string
+              description: Obrigatório caso seja titular.
+            pis_seg:
+              type: string
+            dt_adesao_seg:
+              type: string
+              example: 12/12/2019
+            dt_nascimento_seg:
+              type: string
+            ident_seg:
+              type: string
+            pais_seg:
+              type: integer
+              description: Código Referenciado /proposta/paises
+            orgao_seg:
+              type: string
+            cns_seg:
+              type: integer
+            parentesco_seg:
+              type: integer
+              description: Obrigatório caso seja dependente ou agregado
+            pai_seg:
+              type: string
+            mae_seg:
+              type: string
+            conjuge_seg:
+              type: string
+            banco_seg:
+              type: integer
+            agencia_seg:
+              type: string
+              description: Código Referenciado /proposta/bancos
+            numero_agencia_seg:
+              type: string
+            conta_seg:
+              type: string
+            cep_seg:
+              type: string
+            uf_seg:
+              type: string
+              description: Código Referenciado /proposta/estados
+            cidade_seg:
+              type: string
+            endereco_seg:
+              type: string
+            numero_seg:
+              type: string
+            telefone_seg:
+              type: string
+            complemento_seg:
+              type: string
+            detalhes_seg:
+              type: string
+            ddd_telefone_seg:
+              type: string
+            plano_seg:
+              type: integer
+              description: Código Referenciado /proposta/planos
+            tabela_seg:
+              type: integer
+              description: Código Referenciado /proposta/tabelasPrecos
+            cd_mat_alternativa:
+              type: string
+              description: '[GET][PUT] Código de controle para identificar mudanças ao editar a proposta'
+      required:
+        - proposta
+        - contrato
+        - clientes
