@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'http://localhost:3000/mvsaudeweb/mvsaudeweb/messagebroker'
 paths:
-  /proposta/:
+  /propostas/:
     post:
       summary: Salvar Proposta
       tags:
@@ -25,9 +25,6 @@ paths:
                     type: string
                   status:
                     type: boolean
-                required:
-                  - message
-                  - status
               examples:
                 Exemplo Sucesso:
                   value:
@@ -146,7 +143,7 @@ paths:
                       tabela_seg: 8295
         description: ''
     parameters: []
-  '/proposta/{cdProposta}':
+  '/propostas/{cdProposta}':
     parameters:
       - type: string
         name: cdProposta
@@ -154,6 +151,7 @@ paths:
         required: true
         schema:
           type: integer
+        description: Código da Proposta
     get:
       summary: Consultar uma Proposta
       tags:
@@ -289,8 +287,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties: {}
+              $ref: '#/components/schemas/proposta'
             examples:
               Exemplo JSON:
                 value:
@@ -330,14 +327,14 @@ paths:
                     isNovoContrato: true
                   clientes:
                     - endereco_seg: RAMIRO COSTA
-                      cd_mat_alternativa: 06600000004806664589
+                      cd_mat_alternativa: 6600000004806664000
                       bairro_seg: PRADO
                       dt_adesao_seg: 12/12/2019
                       sexo_seg: M
                       plano_seg: 785
                       uf_seg: PE
                       cep_seg: '50630430'
-                      cpf_seg: 01234567890
+                      cpf_seg: 1234567890
                       dt_nascimento_seg: 01/01/1990
                       zona_seg: 9
                       mae_seg: NOME DA MAE
@@ -350,7 +347,7 @@ paths:
                       estado_civil_seg: S
                       nome_seg: NOME DO BENEFICIARIO TITULAR
                     - endereco_seg: RAMIRO COSTA
-                      cd_mat_alternativa: 06600000004806674589
+                      cd_mat_alternativa: 6600000004806674000
                       bairro_seg: PRADO
                       dt_adesao_seg: 12/12/2019
                       parentesco_seg: 3
@@ -360,7 +357,7 @@ paths:
                       uf_seg: PE
                       pai_seg: TESTE TESTE
                       cep_seg: '50630430'
-                      cpf_seg: 01234567890
+                      cpf_seg: 1234567890
                       nm_operadora_anterior: ASD
                       dt_nascimento_seg: 01/01/1990
                       sn_aproveitamento_carenc: S
@@ -374,7 +371,7 @@ paths:
                       estado_civil_seg: S
                       nome_seg: NOME DO BENEFICIARIO DEPENDENTER
         description: ''
-  /proposta/planos:
+  /propostas/planos:
     get:
       summary: Listar Planos
       tags:
@@ -436,7 +433,8 @@ paths:
           name: cdMultiEmpresa
           description: Código da multi empresa
           required: true
-  /proposta/tabelasPrecos:
+    parameters: []
+  '/propostas/planos/{cdPlano}/tabelasPrecos':
     get:
       summary: Listar Tabelas de Preços
       responses:
@@ -486,7 +484,14 @@ paths:
           required: true
       tags:
         - proposta
-  /proposta/paises/:
+    parameters:
+      - schema:
+          type: integer
+        name: cdPlano
+        in: path
+        required: true
+        description: Código do Plano
+  /propostas/paises/:
     get:
       summary: Listar Países
       responses:
@@ -971,7 +976,7 @@ paths:
         - proposta
         - endereço
     parameters: []
-  /proposta/categorias:
+  /propostas/beneficiarios/categorias:
     get:
       summary: Listar Categorias
       tags:
@@ -1016,7 +1021,7 @@ paths:
           description: Código da multi empresa
           required: true
     parameters: []
-  /proposta/estados:
+  /propostas/estados:
     get:
       summary: Listar Estados
       tags:
@@ -1106,7 +1111,8 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-proposta-estados
-  /proposta/parentescos:
+    parameters: []
+  /propostas/beneficiarios/parentescos:
     get:
       summary: Listar Parentescos
       tags:
@@ -1147,7 +1153,8 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-proposta-parentescos
-  /proposta/bancos:
+    parameters: []
+  /propostas/bancos:
     get:
       summary: Listar Bancos
       tags:
@@ -1175,9 +1182,6 @@ paths:
                     type: string
                   status:
                     type: boolean
-                required:
-                  - message
-                  - status
               examples:
                 Exemplo Sucesso:
                   value:
@@ -1197,7 +1201,8 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-proposta-bancos
-  '/proposta/cep/{cep}':
+    parameters: []
+  '/propostas/enderecos/cep/{cep}':
     get:
       summary: Consultar CEP
       tags: []
