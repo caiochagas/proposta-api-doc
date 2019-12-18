@@ -2,13 +2,13 @@ openapi: 3.0.0
 info:
   title: Portal TISS - Proposta
   version: '1.0'
-  description: Os endpoints auxiliares deverão ser utilizados para consultar as informações necessárias da proposta de acordo com o schema.
+  description: "### Pré-requisitos para criar e salvar proposta\n\nOs endpoints auxiliares deverão ser utilizados para consultar as informações necessárias da proposta de acordo com o schema.\n\n\n### Legenda schema\n\n```bash\n\\[GET\\] Propriedade adicional retornada ao consultar uma proposta.<br/>\n\\[PUT\\] A propriedade deve ser enviada apenas ao editar proposta.<br/>\n\\[REFERÊNCIA\\] O valor da propriedade referencia um código obtido através de uma consulta prévia a um determinado endpoint.\n```"
 servers:
   - url: 'http://localhost:3000/mvsaudeweb/mvsaudeweb/messagebroker'
 paths:
   /propostas/:
     post:
-      summary: Salvar Proposta
+      summary: Criar Proposta
       tags:
         - proposta
       responses:
