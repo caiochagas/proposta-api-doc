@@ -475,13 +475,7 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-proposta-tabelasPrecos
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: cdPlano
-          description: Código do plano
-          required: true
+      parameters: []
       tags:
         - auxiliar
     parameters:
