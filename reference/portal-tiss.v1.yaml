@@ -431,6 +431,8 @@ paths:
           name: cdMultiEmpresa
           description: Código da multi empresa
           required: true
+      tags:
+        - auxiliar
     parameters: []
   '/propostas/planos/{cdPlano}/tabelasPrecos':
     get:
@@ -480,6 +482,8 @@ paths:
           name: cdPlano
           description: Código do plano
           required: true
+      tags:
+        - auxiliar
     parameters:
       - schema:
           type: integer
@@ -968,6 +972,8 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-paises-
+      tags:
+        - auxiliar
     parameters: []
   /propostas/beneficiarios/categorias:
     get:
@@ -1011,6 +1017,8 @@ paths:
           name: cdMultiEmpresa
           description: Código da multi empresa
           required: true
+      tags:
+        - auxiliar
     parameters: []
   /propostas/estados:
     get:
@@ -1099,6 +1107,8 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-proposta-estados
+      tags:
+        - auxiliar
     parameters: []
   /propostas/beneficiarios/parentescos:
     get:
@@ -1241,6 +1251,7 @@ paths:
       operationId: get-proposta-cep
       tags:
         - auxiliar
+      description: ''
     parameters:
       - schema:
           type: integer
@@ -1255,6 +1266,8 @@ components:
       type: object
       x-examples: {}
       description: "\\[GET\\] Propriedade adicional retornada ao consultar uma proposta.<br/>\n\\[PUT\\] A propriedade deve ser enviada apenas ao editar proposta.<br/>\n\\[REFERÊNCIA\\] O valor da propriedade referencia um código obtido através de uma consulta prévia a um determinado endpoint."
+      x-tags:
+        - schemas
       properties:
         proposta:
           type: object
@@ -1381,10 +1394,10 @@ components:
                 - T
                 - D
                 - A
-              description: 'T = Titular, D = Dependente, A = Agregado.'
+              description: 'T = Titular, D = Dependente, A = Agregado'
             estado_civil_seg:
               type: string
-              description: 'S = Solteiro, C = Casado, V = Viúvo,  D = Divorciado,  I = Desquitado .'
+              description: 'S = Solteiro, C = Casado, V = Viúvo,  D = Divorciado,  I = Desquitado'
               enum:
                 - S
                 - C
@@ -1405,7 +1418,7 @@ components:
               type: string
             cpf_seg:
               type: string
-              description: Obrigatório caso seja titular.
+              description: Obrigatório caso seja titular
             pis_seg:
               type: string
             dt_adesao_seg:
@@ -1473,5 +1486,3 @@ components:
         - proposta
         - contrato
         - clientes
-      x-tags:
-        - schemas
