@@ -151,7 +151,7 @@ paths:
         required: true
         schema:
           type: integer
-        description: Código da Proposta
+        description: Código da proposta
     get:
       summary: Consultar uma Proposta
       tags:
@@ -255,8 +255,7 @@ paths:
                     message: Proposta não encontrada.
                     status: false
       operationId: 'get-proposta-{cdProposta}'
-      description: |
-        ...
+      description: ''
     put:
       summary: Editar Proposta
       tags:
@@ -371,6 +370,7 @@ paths:
                       estado_civil_seg: S
                       nome_seg: NOME DO BENEFICIARIO DEPENDENTER
         description: ''
+      description: ''
   /propostas/planos:
     get:
       summary: Listar Planos
@@ -490,7 +490,7 @@ paths:
         name: cdPlano
         in: path
         required: true
-        description: Código do Plano
+        description: Código do plano
   /propostas/paises/:
     get:
       summary: Listar Países
