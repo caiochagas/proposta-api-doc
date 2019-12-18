@@ -974,7 +974,6 @@ paths:
       operationId: get-paises-
       tags:
         - proposta
-        - endereço
     parameters: []
   /propostas/beneficiarios/categorias:
     get:
@@ -1026,7 +1025,6 @@ paths:
       summary: Listar Estados
       tags:
         - proposta
-        - endereço
       responses:
         '200':
           description: OK
@@ -1205,7 +1203,6 @@ paths:
   '/propostas/enderecos/cep/{cep}':
     get:
       summary: Consultar CEP
-      tags: []
       responses:
         '200':
           description: OK
@@ -1252,6 +1249,8 @@ paths:
                     message: CEP não encontrado.
                     status: false
       operationId: get-proposta-cep
+      tags:
+        - proposta
     parameters:
       - schema:
           type: integer
@@ -1262,7 +1261,7 @@ paths:
 components:
   schemas:
     proposta:
-      title: proposta PUT
+      title: Proposta
       type: object
       x-examples: {}
       description: ''
@@ -1482,3 +1481,5 @@ components:
         - proposta
         - contrato
         - clientes
+      x-tags:
+        - proposta
