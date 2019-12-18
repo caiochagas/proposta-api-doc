@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Portal TISS
+  title: Portal TISS - Proposta
   version: '1.0'
-  description: ''
+  description: Os endpoints auxiliares deverão ser utilizados para consultar as informações necessárias da proposta de acordo com o schema.
 servers:
   - url: 'http://localhost:3000/mvsaudeweb/mvsaudeweb/messagebroker'
 paths:
@@ -374,8 +374,6 @@ paths:
   /propostas/planos:
     get:
       summary: Listar Planos
-      tags:
-        - proposta
       responses:
         '200':
           description: OK
@@ -482,8 +480,6 @@ paths:
           name: cdPlano
           description: Código do plano
           required: true
-      tags:
-        - proposta
     parameters:
       - schema:
           type: integer
@@ -972,14 +968,10 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-paises-
-      tags:
-        - proposta
     parameters: []
   /propostas/beneficiarios/categorias:
     get:
       summary: Listar Categorias
-      tags:
-        - proposta
       responses:
         '200':
           description: OK
@@ -1023,8 +1015,6 @@ paths:
   /propostas/estados:
     get:
       summary: Listar Estados
-      tags:
-        - proposta
       responses:
         '200':
           description: OK
@@ -1113,8 +1103,6 @@ paths:
   /propostas/beneficiarios/parentescos:
     get:
       summary: Listar Parentescos
-      tags:
-        - proposta
       responses:
         '200':
           description: OK
@@ -1151,12 +1139,12 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-proposta-parentescos
+      tags:
+        - auxiliar
     parameters: []
   /propostas/bancos:
     get:
       summary: Listar Bancos
-      tags:
-        - proposta
       responses:
         '200':
           description: OK
@@ -1199,6 +1187,8 @@ paths:
                     message: Sucesso.
                     status: true
       operationId: get-proposta-bancos
+      tags:
+        - auxiliar
     parameters: []
   '/propostas/enderecos/cep/{cep}':
     get:
@@ -1250,7 +1240,7 @@ paths:
                     status: false
       operationId: get-proposta-cep
       tags:
-        - proposta
+        - auxiliar
     parameters:
       - schema:
           type: integer
@@ -1264,12 +1254,7 @@ components:
       title: Proposta
       type: object
       x-examples: {}
-      description: |-
-        [GET] Propriedade adicional retornada ao consultar uma proposta.
-        [PUT] A propriedade deve ser enviada apenas ao editar proposta.
-        [REFERÊNCIA] O valor referencia um código obtido através de uma consulta a um determinado endpoint.
-      x-tags:
-        - proposta
+      description: "\\[GET\\] Propriedade adicional retornada ao consultar uma proposta.<br/>\n\\[PUT\\] A propriedade deve ser enviada apenas ao editar proposta.<br/>\n\\[REFERÊNCIA\\] O valor da propriedade referencia um código obtido através de uma consulta prévia a um determinado endpoint."
       properties:
         proposta:
           type: object
@@ -1488,3 +1473,5 @@ components:
         - proposta
         - contrato
         - clientes
+      x-tags:
+        - schemas
